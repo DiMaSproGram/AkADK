@@ -11,10 +11,6 @@ import java.util.Date;
 @MappedSuperclass
 @Getter
 public abstract class AbstractEntity<T> {
-
-    public abstract T getId();
-
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreatedDate
@@ -25,4 +21,17 @@ public abstract class AbstractEntity<T> {
     @LastModifiedDate
     private Date updatedAt;
 
+    @PrePersist
+    public void onCreate() {
+        Date now = new Date();
+        createdAt = now;
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        Date now = new Date();
+        updatedAt = now;
+    }
+
+    public abstract T getId();
 }
