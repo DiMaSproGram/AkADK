@@ -21,7 +21,6 @@ import java.util.Date;
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity<Long> {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_id_seq", allocationSize = 1)
@@ -44,7 +43,6 @@ public class User extends AbstractEntity<Long> {
 
     @Column(name = "enabled")
     private boolean enabled;
-
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "role_id")
