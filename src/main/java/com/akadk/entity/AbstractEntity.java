@@ -25,12 +25,12 @@ public abstract class AbstractEntity<T> {
     public void onCreate() {
         Date now = new Date();
         createdAt = now;
+        updatedAt = now;
     }
 
     @PreUpdate
     public void onUpdate() {
-        Date now = new Date();
-        updatedAt = now;
+        updatedAt = new Date();
     }
 
     public abstract T getId();
