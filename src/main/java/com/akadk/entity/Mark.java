@@ -25,9 +25,9 @@ public class Mark extends AbstractEntity<Long> {
     @Column(name = "mark_stats")
     private String markStats;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id")
-    private List<User> users;
+    private User users;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "subject_id")
