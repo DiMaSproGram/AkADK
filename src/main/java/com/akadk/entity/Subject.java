@@ -25,12 +25,13 @@ public class Subject extends AbstractEntity<Long> {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id")
+        joinColumns = @JoinColumn(name = "subject_id"),
+        inverseJoinColumns = @JoinColumn(name = "group_id")
     )
     private List<Group> groups;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "mark")
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "subjects")

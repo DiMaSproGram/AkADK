@@ -11,9 +11,11 @@ import javax.validation.constraints.Size;
 import com.akadk.common.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.*;
 
 @NoArgsConstructor
 @Getter
@@ -55,9 +57,8 @@ public class User extends AbstractEntity<Long> {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user")
     private Subject subject;
 
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    @JoinColumn(name = "user_id")
-    private Mark mark;
+    @OneToMany(mappedBy = "users")
+    private List<Mark> marks;
 
     public User(String username, String firstName, String lastName, String password, boolean enabled) {
         this.username = username;
